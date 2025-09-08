@@ -1,0 +1,226 @@
+<ng-template #desktopModal>
+  <div class="container" id="container">
+
+    <!-- Sign Up Form -->
+    <div class="form-container sign-up-container">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()">
+        <h1>Create Account</h1>
+
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google"></i></a>
+        </div>
+
+        <span>or use your email for registration</span>
+
+        <div class="name-fields">
+
+          <input formControlName="firstName" type="text" placeholder="👤 First Name" />
+          <input formControlName="lastName" type="text" placeholder="👤 Last Name" />
+
+        </div>
+
+        <!-- First Name Error Message -->
+        <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="error">
+          <span *ngIf="f['firstName'].errors?.['required']">First name is required.</span>
+          <span *ngIf="f['firstName'].errors?.['pattern']">Only letters are allowed.</span>
+        </div>
+
+        <!-- Last Name Error Message -->
+        <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="error">
+          <span *ngIf="f['lastName'].errors?.['required']">Last name is required.</span>
+          <span *ngIf="f['lastName'].errors?.['pattern']">Only letters are allowed.</span>
+        </div>
+
+        <!-- Email -->
+        <input formControlName="email" type="email" placeholder="📧 Email" />
+        <div *ngIf="f['email'].touched && f['email'].invalid" class="error">
+          <span *ngIf="f['email'].errors?.['required']">Email is required.</span>
+          <span *ngIf="f['email'].errors?.['email']">Enter a valid email.</span>
+        </div>
+
+        <select formControlName="gender" required>
+          <option value="" disabled selected hidden>🚻 Select Gender</option>
+          <option value="female">👩 Female</option>
+          <option value="male">👨 Male</option>
+        </select>
+
+        <div *ngIf="f['gender'].touched && f['gender'].invalid" class="error">
+          <span *ngIf="f['gender'].errors?.['required']">Gender is required.</span>
+        </div>
+
+        <!-- Password -->
+        <input formControlName="password" type="password" placeholder="🔒 Password" />
+        <div *ngIf="f['password'].touched && f['password'].invalid" class="error">
+          <span *ngIf="f['password'].errors?.['required']">Password is required.</span>
+          <span *ngIf="!f['password'].errors?.['required'] && f['password'].errors?.['minlength']">Minimum 8 characters.</span>
+          <span *ngIf="!f['password'].errors?.['required'] && !f['password'].errors?.['minlength'] && f['password'].errors?.['maxlength']">Maximum 25 characters.</span>
+          <span *ngIf="!f['password'].errors?.['required'] && !f['password'].errors?.['minlength'] && !f['password'].errors?.['maxlength'] && f['password'].errors?.['pattern']">
+            Password must include uppercase, lowercase, number and special character.
+          </span>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Sign In Form -->
+    <div class="form-container sign-in-container">
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmitSignIn()">
+        <h1>Sign In 👋</h1>
+
+            <div *ngIf="loginError" class="error login-error">
+            {{ loginErrorMessage }}
+          </div>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google"></i></a>
+        </div>
+
+        <span>or use your account</span>
+
+        <input formControlName="email" type="email" placeholder="📧 Email" />
+        <div *ngIf="s['email'].touched && s['email'].invalid" class="error">
+          <span *ngIf="s['email'].errors?.['required']">Email is required.</span>
+          <span *ngIf="s['email'].errors?.['email']">Enter a valid email.</span>
+        </div>
+
+        <input formControlName="password" type="password" placeholder="🔒 Password" />
+        <div *ngIf="s['password'].touched && s['password'].invalid" class="error">
+          <span *ngIf="s['password'].errors?.['required']">Password is required.</span>
+        </div>
+
+        <a href="#">Forgot your password? 🤔</a>
+
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+
+    <!-- Overlay container -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back! 🎉</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn" (click)="toggleToSignIn()">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend! ✨</h1>
+          <p>Enter your personal details and start your journey with us</p>
+          <button class="ghost" id="signUp" (click)="toggleToSignUp()">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Mobile version -->
+<div *ngIf="isMobile; else desktopModal" class="mobile-modal">
+<!-- Toggle Sign In / Sign Up -->
+  <div class="tab-toggle">
+  <button
+    type="button"
+    [class.active]="mode==='signin'"
+    (click)="mode='signin'">
+    LOGIN
+  </button>
+  <button
+    type="button"
+    [class.active]="mode==='signup'"
+    (click)="mode='signup'">
+    SIGN UP
+  </button>
+</div>
+
+  <!-- Sign Up Form -->
+  <form
+    *ngIf="mode==='signup'"
+    [formGroup]="signUpForm"
+    (ngSubmit)="onSubmitSignUp()"
+    class="mobile-form">
+
+    <h1>Create Account</h1>
+    <div class="social-container">
+      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social"><i class="fab fa-google"></i></a>
+    </div>
+    <span>or use your email for registration</span>
+
+      <div class="name-fields">
+      <input formControlName="firstName" type="text" placeholder="👤 First Name" />
+      <input formControlName="lastName"  type="text" placeholder="👤 Last Name"  />
+    </div>
+
+    <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="error">
+      <span *ngIf="f['firstName'].errors?.['required']">First name is required.</span>
+      <span *ngIf="f['firstName'].errors?.['pattern']">Only letters are allowed.</span>
+    </div>
+
+    <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="error">
+      <span *ngIf="f['lastName'].errors?.['required']">Last name is required.</span>
+      <span *ngIf="f['lastName'].errors?.['pattern']">Only letters are allowed.</span>
+    </div>
+
+    <input formControlName="email" type="email" placeholder="📧 Email" />
+    <div *ngIf="f['email'].touched && f['email'].invalid" class="error">
+      <span *ngIf="f['email'].errors?.['required']">Email is required.</span>
+      <span *ngIf="f['email'].errors?.['email']">Enter a valid email.</span>
+    </div>
+
+    <select formControlName="gender" required>
+      <option value="" disabled selected hidden>🚻 Select Gender</option>
+      <option value="female">👩 Female</option>
+      <option value="male">👨 Male</option>
+    </select>
+    <div *ngIf="f['gender'].touched && f['gender'].invalid" class="error">
+      <span *ngIf="f['gender'].errors?.['required']">Gender is required.</span>
+    </div>
+
+    <input formControlName="password" type="password" placeholder="🔒 Password" />
+    <div *ngIf="f['password'].touched && f['password'].invalid" class="error">
+      <span *ngIf="f['password'].errors?.['required']">Password is required.</span>
+      <span *ngIf="f['password'].errors?.['minlength']">Minimum 8 characters.</span>
+      <span *ngIf="f['password'].errors?.['maxlength']">Maximum 25 characters.</span>
+      <span *ngIf="f['password'].errors?.['pattern']">
+        Password must include uppercase, lowercase, number & special char.
+      </span>
+    </div>
+
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <!-- Sign In Form -->
+  <form
+    *ngIf="mode==='signin'"
+    [formGroup]="signInForm"
+    (ngSubmit)="onSubmitSignIn()"
+    class="mobile-form">
+
+    <h1>Sign In 👋</h1>
+
+    <div *ngIf="loginError" class="error login-error">
+      {{ loginErrorMessage }}
+    </div>
+
+    <div class="social-container">
+      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social"><i class="fab fa-google"></i></a>
+    </div>
+    <span>or use your account</span>
+
+    <input formControlName="email" type="email" placeholder="📧 Email" />
+    <div *ngIf="s['email'].touched && s['email'].invalid" class="error">
+      <span *ngIf="s['email'].errors?.['required']">Email is required.</span>
+      <span *ngIf="s['email'].errors?.['email']">Enter a valid email.</span>
+    </div>
+
+    <input formControlName="password" type="password" placeholder="🔒 Password" />
+    <div *ngIf="s['password'].touched && s['password'].invalid" class="error">
+      <span *ngIf="s['password'].errors?.['required']">Password is required.</span>
+    </div>
+
+    <a href="#">Forgot your password? 🤔</a>
+
+    <button type="submit">Sign In</button>
+  </form>
+</div>

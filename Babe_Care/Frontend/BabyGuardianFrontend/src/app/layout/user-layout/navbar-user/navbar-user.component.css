@@ -1,0 +1,148 @@
+/* ========== desktop nav ========== */
+header.desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 10%;
+  position: sticky;
+  top: 0; left: 0; right: 0;
+  background-color: rgba(255,255,255,0.9);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  color: #1B8837;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.logo p {
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.img-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin: 0 15px;
+  list-style: none;
+}
+
+.menu li a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #999;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.menu li a::before,
+.menu li a::after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  border-radius: 6px;
+  background-color: #1B8837;
+  transition: 0.5s;
+  width: 0%;
+}
+
+.menu li a::before {
+  top: -5px;
+  left: 0;
+}
+
+.menu li a::after {
+  bottom: -5px;
+  right: 0;
+}
+
+.menu li a:hover::before,
+.menu li a:hover::after,
+.menu li a.active::before,
+.menu li a.active::after {
+  width: 100%;
+}
+
+.menu li a:hover,
+.menu li a.active {
+  color: #000;
+  font-weight: bold;
+}
+
+
+/* ========== mobile bottom nav – hidden by default ========== */
+.mobile-nav {
+  display: none;
+}
+
+/* ========== quand l’écran ≤ 768px (mobile) ========== */
+@media (max-width: 768px) {
+  header.desktop-nav { display: none; }
+
+  footer.mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%; height: 60px;
+    background: #fff;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+    justify-content: space-around;
+    align-items: center;
+    z-index: 20;
+  }
+
+  footer.mobile-nav a {
+    text-decoration: none;
+
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* icônes */
+  footer.mobile-nav a i {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+    color: #ccc;
+  }
+
+  footer.mobile-nav a.active {
+    color: #1B8837;
+  }
+
+  /* transition sur toutes les icônes */
+footer.mobile-nav a i {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* état sélectionné → on agrandit un peu */
+footer.mobile-nav a.active i {
+  color: #1B8837;        /* votre couleur active */
+  transform: scale(1.2); /* agrandissement léger */
+}
+
+}

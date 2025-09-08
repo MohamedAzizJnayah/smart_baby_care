@@ -1,0 +1,26 @@
+<section class="home-banner">
+  <div class="banner-content">
+    <div class="text-area">
+      <h1>Welcome to SaveBite</h1>
+      <p>Smart food management to reduce waste and improve your health.</p>
+
+      <a routerLink="/features" class="cta-button">Discover Features</a>
+
+      <!-- Groupe inline : texte + bouton côte-à-côte -->
+      <div class="install-inline-group" *ngIf="showInstallButton">
+        <span class="install-inline-text">
+          Installez SaveBite pour profiter du mode hors-ligne.
+        </span>
+        <button (click)="installApp()" class="install-inline-btn">
+          Installer
+        </button>
+      </div>
+    </div>
+
+    <div class="image-area">
+      <img src="assets/images/savebite-hero.png"
+           alt="SaveBite vegetables"
+           class="floating" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,130 @@
+/* ========== profile.component.css ========== */
+.profile-page {
+  position: relative;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 60px 20px 20px;
+  background: #fff;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: sans-serif;
+}
+
+/* ——— Mode lecture ——— */
+.name {
+  margin: 12px 0 16px;
+  font-size: 1.5rem;
+  color: #222;
+}
+
+.info-list {
+  list-style: none;       /* plus de puces */
+  padding: 0;
+  margin: 0 0 24px;
+  text-align: left;
+}
+
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* ——— Mode édition ——— */
+.name-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.name-form input {
+  flex: 1;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.edit-form {
+  text-align: left;
+  margin-bottom: 24px;
+}
+.edit-form label {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.edit-form input,
+.edit-form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* ——— Avatar & boutons ——— */
+.avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid #1B8837;
+  object-fit: cover;
+}
+
+.edit-icon,
+.cancel-icon,
+.save-icon {
+  position: absolute;
+  top: 16px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.edit-icon  { right: 16px; color: #1B8837; }
+.cancel-icon{ left: 16px;  color: #d00;    }
+.save-icon  { right: 16px; color: #1B8837; }
+
+/* ——— Déconnexion ——— */
+.btn-logout {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #ffe5e5;
+  color: #d00;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* ——— Desktop ≥769px ——— */
+@media (min-width: 769px) {
+  .profile-page {
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 60px auto;
+    padding: 60px 40px 40px;
+    text-align: left;
+  }
+  .edit-icon,
+  .cancel-icon,
+  .save-icon { top: 24px; }
+  .avatar-wrapper,
+  .name,
+  .name-form { grid-column: 1 / -1; text-align: center; }
+  .info-list,
+  .edit-form    { grid-column: 1 / 2; }
+  .btn-logout   { grid-column: 2 / 3; align-self: start; }
+}

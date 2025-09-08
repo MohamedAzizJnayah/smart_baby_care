@@ -1,0 +1,18 @@
+<header>
+  <div class="logo">
+    <img src="assets/images/logo.png" alt="SaveBite Logo" class="img-logo" />
+    <p>SaveBite</p>
+  </div>
+
+  <!-- Bouton burger -->
+  <div class="burger" (click)="toggleMenu()">☰</div>
+
+  <!-- Menu avec classe conditionnelle -->
+  <ul class="menu" [class.open]="menuOpen">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a></li>
+    <li><a routerLink="/features" routerLinkActive="active" (click)="closeMenu()">Features</a></li>
+    <li><a routerLink="/how-it-works" routerLinkActive="active" (click)="closeMenu()">How it works</a></li>
+
+    <li><a href="#" (click)="openDialog(); $event.preventDefault(); closeMenu()">Account</a></li>
+  </ul>
+</header>

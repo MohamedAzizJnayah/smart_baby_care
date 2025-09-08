@@ -1,0 +1,95 @@
+<section class="profile-page">
+
+  <!-- Mode lecture -->
+  <button *ngIf="!editMode" class="edit-icon" (click)="editProfile()">
+    <i class="fa-solid fa-pen-to-square"></i>
+  </button>
+
+  <!-- Mode édition : cancel & save -->
+  <ng-container *ngIf="editMode">
+    <button class="cancel-icon" (click)="cancelEdit()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <button class="save-icon" (click)="saveProfile()">
+      <i class="fa-solid fa-check"></i>
+    </button>
+  </ng-container>
+
+  <!-- On ouvre le formGroup une seule fois -->
+  <form
+    [formGroup]="userForm"
+    *ngIf="editMode; else viewMode"
+    class="edit-form">
+
+    <!-- Avatar (toujours en lecture) -->
+    <div class="avatar-wrapper">
+      <img
+        [src]="
+          user.image
+            ? user.image
+            : (user.gender === 'female'
+                ? 'assets/images/female-user.png'
+                : 'assets/images/male-user.png')
+        "
+        alt="Photo de profil"
+        class="avatar" />
+    </div>
+
+    <!-- Nom & Prénom éditables -->
+    <div class="name-form">
+      <input formControlName="firstName" placeholder="Prénom" />
+      <input formControlName="lastName"  placeholder="Nom" />
+    </div>
+
+    <!-- Les autres champs -->
+    <label>Email :
+      <input formControlName="email" type="email" />
+    </label>
+
+    <label>Genre :
+      <select formControlName="gender">
+        <option value="female">Féminin</option>
+        <option value="male">Masculin</option>
+      </select>
+    </label>
+
+    <label>Adresse :
+      <input formControlName="address" />
+    </label>
+
+    <label>Téléphone :
+      <input formControlName="phone" />
+    </label>
+  </form>
+
+  <!-- Mode lecture (affichage statique) -->
+  <ng-template #viewMode>
+    <div class="avatar-wrapper">
+      <!-- même image fallback -->
+      <img
+        [src]="
+          user.image
+            ? user.image
+            : (user.gender === 'female'
+                ? 'assets/images/female-user.png'
+                : 'assets/images/male-user.png')
+        "
+        alt="Photo de profil"
+        class="avatar" />
+    </div>
+
+    <h1 class="name">
+      {{ user.firstName }} {{ user.lastName }}
+    </h1>
+
+    <ul class="info-list">
+      <li><span class="label">Email :</span>    <span class="value">{{ user.email }}</span></li>
+      <li><span class="label">Genre :</span>    <span class="value">{{ user.gender === 'female' ? 'Féminin' : 'Masculin' }}</span></li>
+      <li><span class="label">Adresse :</span>  <span class="value">{{ user.address }}</span></li>
+      <li><span class="label">Téléphone :</span><span class="value">{{ user.phone }}</span></li>
+    </ul>
+  </ng-template>
+
+  <!-- Bouton déconnexion (toujours visible) -->
+  <button class="btn-logout" (click)="logout()">Se déconnecter</button>
+</section>

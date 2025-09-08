@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+  font-family: 'Funnel Sans', sans-serif;
+  margin: 0;
+  padding: 0;    box-sizing: border-box;
+}
+
+body{
+  position: relative;
+}
+
+html{
+  scroll-behavior: smooth;
+
+}
+
+html, body { height: 100%; }
+
+::ng-deep .mat-dialog-container {
+  margin: 10px auto;
+  padding: 0;
+  overflow: hidden;
+  width: auto;
+  max-width: 95vw;
+  max-height: 95vh;
+  height: auto;
+}
+
+::ng-deep .cdk-overlay-pane {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center;
+  padding-top: 10px !important;
+}
+
+::ng-deep .mat-dialog-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-height: calc(100vh - 20px) !important;
+}

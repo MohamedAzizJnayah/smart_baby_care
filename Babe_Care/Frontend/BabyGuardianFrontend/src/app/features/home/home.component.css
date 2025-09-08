@@ -1,0 +1,135 @@
+.home-banner {
+  height: 100vh;
+  background: #f0fff0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10%;
+}
+
+.banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.text-area {
+  flex: 1;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.text-area h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #1B8837;
+}
+
+.text-area p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  background: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s;
+  margin-top: 1rem;
+}
+
+.cta-button:hover {
+  background: #218838;
+}
+
+.image-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.image-area img {
+  max-width: 100%;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 768px) {
+  .banner-content {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .text-area {
+    padding: 0;
+  }
+
+  .text-area h1 {
+    font-size: 2.2rem;
+  }
+
+  .text-area p {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  .image-area {
+    margin-bottom: 20px;
+  }
+}
+/* groupe horizontal texte+bouton */
+.install-inline-group {
+  display: inline-flex;       /* ou flex */
+  align-items: center;
+  gap: 0.5rem;                /* espace entre le texte et le bouton */
+  margin-top: 1.5rem;         /* espace au-dessus */
+}
+
+/* style du texte */
+.install-inline-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* style du bouton */
+.install-inline-btn {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.install-inline-btn:hover {
+  background: #218838;
+}
